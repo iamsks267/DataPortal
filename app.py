@@ -4,6 +4,11 @@ import streamlit as st
 from ydata_profiling import ProfileReport
 import streamlit.components.v1 as components
 
+# Set page title and description
+st.set_page_config(page_title="DataPortal", layout="wide")
+
+
+
 # Function to render ydata_profiling report in Streamlit
 def st_profile_report(profile):
     """
@@ -18,6 +23,7 @@ def st_profile_report(profile):
     # Render the HTML in Streamlit
     components.html(profile_html, height=800, scrolling=True)
 
+# db_path = "/Users/apple/Documents/Innovations/DataPortal"
 # Connect to the Chinook SQLite database using caching to optimize performance
 @st.cache_resource
 def get_connection(db_path):
@@ -48,8 +54,31 @@ except Exception as e:
     st.error(f"Error fetching table names: {e}")
     table_names = []
 
-# Streamlit app layout
-st.title("Chinook Database Viewer")
+
+# Title and description
+st.title("DataPortal: Chinook Database-Connected Data Analysis and Query Platform")
+
+# Add circular LinkedIn photo using HTML and CSS
+linkedin_image_url = "https://media.licdn.com/dms/image/v2/D4D03AQGgpAx6pUJCXw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1696796667460?e=1731542400&v=beta&t=9dVlSMnDqqYTdAcBM69zTx12apE66b1OxWGrcXBMH4A"
+
+# Web App Title
+st.markdown('''      
+**Technology Used:** App build in `Python` + `Streamlit` using **ydata-profiling** library
+
+''')
+
+# Display LinkedIn link followed by circular image
+st.markdown(
+    f'''
+    <div style="display: flex; align-items: center;">
+        <span>Created by <a href="https://www.linkedin.com/in/sanjeev-kumar-singh-sks-b7b612ba/" target="_blank">Sanjeev Kumar Singh</a></span>
+        <img src="{linkedin_image_url}" style="border-radius: 50%; width: 30px; height: 30px; object-fit: cover; margin-left: 10px;">
+    </div>
+    
+    ---
+    ''',
+    unsafe_allow_html=True
+)
 
 # Dropdown to select table
 selected_table = st.selectbox("Select a table to view", table_names)
