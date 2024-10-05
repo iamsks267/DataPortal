@@ -18,7 +18,6 @@ def st_profile_report(profile):
     # Render the HTML in Streamlit
     components.html(profile_html, height=800, scrolling=True)
 
-db_path = "/Users/apple/Documents/Innovations/DataPortal"
 # Connect to the Chinook SQLite database using caching to optimize performance
 @st.cache_resource
 def get_connection(db_path):
