@@ -1,1 +1,2 @@
 ydata-profiling
+pkg_resources
